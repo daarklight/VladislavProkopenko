@@ -16,8 +16,8 @@
     </maven-surefire-plugin.suiteXmlFile>
     <testng.version>7.4.0</testng.version>
     <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-    <calculator.version>1.0</calculator.version>
     <checkstyle.version>8.42</checkstyle.version>
+    <calculator.version>1.0</calculator.version>
   </properties>
 
 
