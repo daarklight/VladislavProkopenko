@@ -1,16 +1,24 @@
-package ru.training.at.hw1.mainTestClasses;
+package ru.training.at.hw1.maintestclasses;
 
 import com.epam.tat.module4.Calculator;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.training.at.hw1.DataProviders;
 
 public class AdditionTest {
 
+    private Calculator calculator;
+
+    @BeforeClass
+    public void before() {
+        calculator = new Calculator();
+    }
+
     @Test(dataProviderClass = DataProviders.class, dataProvider = "addition data - long",
           groups = "additionAndSubtraction")
     public void additionTestingLong(long firstNum, long secondNum, long expectedResult) {
-        Calculator calculator = new Calculator();
         long actualResult = calculator.sum(firstNum, secondNum);
         Assert.assertEquals(actualResult, expectedResult);
         System.out.println(firstNum + " + " + secondNum + " = " + expectedResult);
@@ -19,10 +27,13 @@ public class AdditionTest {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "addition data - double",
           groups = "additionAndSubtraction")
     public void additionTestingDouble(double firstNum, double secondNum, double expectedResult) {
-        Calculator calculator = new Calculator();
         double actualResult = calculator.sum(firstNum, secondNum);
-        Assert.assertEquals(actualResult, expectedResult);
+        Assert.assertEquals(actualResult, expectedResult, 0.0001);
         System.out.println(firstNum + " + " + secondNum + " = " + expectedResult);
     }
 
+    @AfterClass
+    public void after() {
+        calculator = null;
+    }
 }
