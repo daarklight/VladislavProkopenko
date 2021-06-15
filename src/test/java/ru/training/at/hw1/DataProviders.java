@@ -60,7 +60,6 @@ public class DataProviders {
         };
     }
 
-
     @DataProvider(name = "multiplication data - double")
     public static Object[][] multiplicationDataDouble() {
         return new Object[][] {
@@ -68,5 +67,4 @@ public class DataProviders {
             {12.2, 3, 36.6}
         };
     }
-
 }

@@ -12,7 +12,12 @@
   <properties>
     <maven.compiler.source>13</maven.compiler.source>
     <maven.compiler.target>13</maven.compiler.target>
-    <maven-surefire-plugin.suiteXmlFile>${project.basedir}/src/test/java/ru/training/at/hw1/resources/AdditionAndSubtractionTests.xml</maven-surefire-plugin.suiteXmlFile>
+    <maven-surefire-plugin.suiteXmlFile>${project.basedir}/src/test/java/ru/training/at/hw1/resources/AdditionAndSubtractionTests.xml
+    </maven-surefire-plugin.suiteXmlFile>
+    <testng.version>7.4.0</testng.version>
+    <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+    <calculator.version>1.0</calculator.version>
+    <checkstyle.version>8.42</checkstyle.version>
   </properties>
 
 
@@ -21,20 +26,14 @@
       <groupId>com.epam.tat</groupId>
       <artifactId>calculator</artifactId>
       <scope>system</scope>
-      <version>1.0</version>
+      <version>${calculator.version}</version>
       <systemPath>${project.basedir}/src/main/resources/calculator-1.0.jar</systemPath>
     </dependency>
 
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>7.4.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13</version>
+      <version>${testng.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -44,17 +43,55 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M5</version>
+        <version>${maven-surefire-plugin.version}</version>
         <configuration>
           <suiteXmlFiles>
             <suiteXmlFile>${maven-surefire-plugin.suiteXmlFile}</suiteXmlFile>
           </suiteXmlFiles>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.1.2</version>
+        <dependencies>
+          <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>${checkstyle.version}</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <configLocation>
+            https://raw.githubusercontent.com/DmitryKhodakovsky/epam-training-center-code-checkers-configurations/main/checkstyle/checkstyle.xml
+          </configLocation>
+          <includeTestSourceDirectory>true</includeTestSourceDirectory>
+          <violationSeverity>warning</violationSeverity>
+          <consoleOutput>true</consoleOutput>
+        </configuration>
+        <executions>
+          <execution>
+            <id>validate</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
+
   <profiles>
+    <profile>
+      <id>additionAndSubtractionTests</id>
+      <properties>
+        <suiteXMLfile>${maven-surefire-plugin.suiteXmlFile}</suiteXMLfile>
+      </properties>
+    </profile>
+
     <profile>
       <id>divisionAndMultiplicationTests</id>
       <properties>
@@ -68,7 +105,6 @@
         <suiteXMLfile>${project.basedir}/src/test/java/ru/training/at/hw1/resources/AllTests.xml</suiteXMLfile>
       </properties>
     </profile>
-
   </profiles>
 
 </project>

@@ -2,10 +2,10 @@
 <suite name="allTestsSuite">
   <test name="allTests">
     <classes>
-      <class name="ru.training.at.hw1.mainTestClasses.AdditionTest"/>
-      <class name="ru.training.at.hw1.mainTestClasses.SubtractionTest"/>
-      <class name="ru.training.at.hw1.mainTestClasses.DivisionTest"/>
-      <class name="ru.training.at.hw1.mainTestClasses.MultiplicationTest"/>
+      <class name="ru.training.at.hw1.maintestclasses.AdditionTest"/>
+      <class name="ru.training.at.hw1.maintestclasses.SubtractionTest"/>
+      <class name="ru.training.at.hw1.maintestclasses.DivisionTest"/>
+      <class name="ru.training.at.hw1.maintestclasses.MultiplicationTest"/>
     </classes>
   </test>
 </suite>

@@ -8,8 +8,8 @@
       </run>
     </groups>
     <classes>
-      <class name="ru.training.at.hw1.mainTestClasses.DivisionTest"/>
-      <class name="ru.training.at.hw1.mainTestClasses.MultiplicationTest"/>
+      <class name="ru.training.at.hw1.maintestclasses.DivisionTest"/>
+      <class name="ru.training.at.hw1.maintestclasses.MultiplicationTest"/>
     </classes>
   </test>
 </suite>
