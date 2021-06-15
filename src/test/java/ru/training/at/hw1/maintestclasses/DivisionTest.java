@@ -11,7 +11,7 @@ public class DivisionTest {
 
     private Calculator calculator;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void before() {
         calculator = new Calculator();
     }
@@ -32,7 +32,7 @@ public class DivisionTest {
         System.out.println(firstNum + " / " + secondNum + " = " + expectedResult);
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void after() {
         calculator = null;
     }
