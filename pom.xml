@@ -10,8 +10,8 @@
 
 
   <properties>
-    <maven.compiler.source>13</maven.compiler.source>
-    <maven.compiler.target>13</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
     <maven-surefire-plugin.suiteXmlFile>${project.basedir}/src/test/java/ru/training/at/hw1/resources/AdditionAndSubtractionTests.xml
     </maven-surefire-plugin.suiteXmlFile>
     <testng.version>7.4.0</testng.version>
@@ -87,6 +87,9 @@
   <profiles>
     <profile>
       <id>additionAndSubtractionTests</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <properties>
         <suiteXMLfile>${maven-surefire-plugin.suiteXmlFile}</suiteXMLfile>
       </properties>
