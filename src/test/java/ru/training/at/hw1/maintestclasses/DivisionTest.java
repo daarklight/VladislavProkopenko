@@ -1,24 +1,14 @@
 package ru.training.at.hw1.maintestclasses;
 
-import com.epam.tat.module4.Calculator;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.training.at.hw1.DataProviders;
 
-public class DivisionTest {
-
-    private Calculator calculator;
-
-    @BeforeClass(alwaysRun = true)
-    public void before() {
-        calculator = new Calculator();
-    }
+public class DivisionTest extends CommonTestContent {
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "division data - long",
           groups = "divisionAndMultiplication")
-    public void divisionTestingLong(long firstNum, long secondNum, long expectedResult) {
+    public void divisionLongTesting(long firstNum, long secondNum, long expectedResult) {
         long actualResult = calculator.div(firstNum, secondNum);
         Assert.assertEquals(actualResult, expectedResult);
         System.out.println(firstNum + " / " + secondNum + " = " + expectedResult);
@@ -26,14 +16,9 @@ public class DivisionTest {
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "division data - double",
           groups = "divisionAndMultiplication")
-    public void divisionTestingDouble(double firstNum, double secondNum, double expectedResult) {
+    public void divisionDoubleTesting(double firstNum, double secondNum, double expectedResult) {
         double actualResult = calculator.div(firstNum, secondNum);
         Assert.assertEquals(actualResult, expectedResult, 0.0001);
         System.out.println(firstNum + " / " + secondNum + " = " + expectedResult);
-    }
-
-    @AfterClass(alwaysRun = true)
-    public void after() {
-        calculator = null;
     }
 }
