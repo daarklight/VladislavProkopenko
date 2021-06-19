@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="divisionAndMultiplication">
-  <test name="divisionAndMultiplication">
+<suite name="DivisionAndMultiplicationTests">
+  <test name="DivisionAndMultiplicationTests">
     <groups>
       <run>
         <include name="divisionAndMultiplication"/>
