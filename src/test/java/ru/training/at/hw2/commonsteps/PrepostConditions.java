@@ -4,13 +4,12 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 public class PrepostConditions {
 
     protected WebDriver webdriver;
-
 
     @BeforeClass
     public void setUpClass() {
@@ -25,9 +24,8 @@ public class PrepostConditions {
     }
 
     // Close Browser
-    @AfterTest
+    @AfterClass
     public void closing() {
         webdriver.close();
     }
-
 }

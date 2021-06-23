@@ -16,9 +16,12 @@
 
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <checkstyle.version>8.42</checkstyle.version>
-        <testng.configs.path>${project.basedir}/src/test/java/ru/training/at/hw2/resources
-        </testng.configs.path>
+        <testng.configs.path.hw2>${project.basedir}/src/test/java/ru/training/at/hw2/resources
+        </testng.configs.path.hw2>
         <testng.suite.file/>
+        <webdrivermanager.version>4.4.3</webdrivermanager.version>
+        <selenium-java.version>4.0.0-beta-3</selenium-java.version>
+        <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
     </properties>
 
 
@@ -27,7 +30,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>4.4.3</version>
+            <version>${webdrivermanager.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -42,7 +45,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.0.0-beta-3</version>
+            <version>${selenium-java.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -63,7 +66,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.2</version>
+                <version>${maven-checkstyle-plugin.version}</version>
                 <dependencies>
                     <dependency>
                         <groupId>com.puppycrawl.tools</groupId>
@@ -95,26 +98,26 @@
 
     <profiles>
         <profile>
-            <id>Both exercises</id>
+            <id>HW2-Both exercises</id>
           <activation>
             <activeByDefault>true</activeByDefault>
           </activation>
             <properties>
-                <testng.suite.file>${testng.configs.path}/AllTests.xml</testng.suite.file>
+                <testng.suite.file>${testng.configs.path.hw2}/AllTests.xml</testng.suite.file>
             </properties>
         </profile>
 
       <profile>
-        <id>OnlyExercise1Test</id>
+        <id>HW2-OnlyExercise1Test</id>
         <properties>
-          <testng.suite.file>${testng.configs.path}/OnlyExercise1Test.xml</testng.suite.file>
+          <testng.suite.file>${testng.configs.path.hw2}/OnlyExercise1Test.xml</testng.suite.file>
         </properties>
       </profile>
 
       <profile>
-        <id>OnlyExercise2Test</id>
+        <id>HW2-OnlyExercise2Test</id>
         <properties>
-          <testng.suite.file>${testng.configs.path}/OnlyExercise2Test.xml</testng.suite.file>
+          <testng.suite.file>${testng.configs.path.hw2}/OnlyExercise2Test.xml</testng.suite.file>
         </properties>
       </profile>
 

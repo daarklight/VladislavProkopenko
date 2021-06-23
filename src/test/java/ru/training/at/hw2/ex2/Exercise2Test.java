@@ -21,19 +21,19 @@ public class Exercise2Test extends PrepostConditions {
         Assert.assertEquals(webdriver.getTitle(), "Home Page");
 
         // 3. Perform login
-        webdriver.findElement(By.xpath("//li[@class='dropdown uui-profile-menu']/a[@class='dropdown-toggle']"))
+        webdriver.findElement(By.cssSelector("li[class='dropdown uui-profile-menu'] > a[class='dropdown-toggle']"))
                  .click();
         webdriver.findElement(By.id("name")).sendKeys("Roman");
         webdriver.findElement(By.id("password")).sendKeys("Jdi1234");
         webdriver.findElement(By.id("login-button")).click();
 
         // 4. Assert Username is loggined
-        Assert.assertEquals(webdriver.findElement(By.xpath("//span[@id='user-name']")).getText(),
+        Assert.assertEquals(webdriver.findElement(By.cssSelector("span[id='user-name']")).getText(),
             "ROMAN IOVLEV");
 
         // 5. Open through the header menu Service -> Different Elements Page
-        webdriver.findElement(By.xpath("//a[@class = 'dropdown-toggle' and contains(text(),'Service')]")).click();
-        webdriver.findElement(By.xpath("//ul/li/a[text()[contains(.,'Different elements')]]")).click();
+        webdriver.findElement(By.cssSelector("header a[class = 'dropdown-toggle']")).click();
+        webdriver.findElement(By.cssSelector("header a[href = 'different-elements.html']")).click();
 
         // 6. Select checkboxes
         webdriver.findElement(By.xpath("//label[text()[contains(.,'Water')]]/input")).click();
