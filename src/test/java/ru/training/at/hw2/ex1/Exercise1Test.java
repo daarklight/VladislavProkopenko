@@ -1,6 +1,8 @@
 package ru.training.at.hw2.ex1;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -9,6 +11,7 @@ import ru.training.at.hw2.commonsteps.PrepostConditions;
 
 public class Exercise1Test extends PrepostConditions {
 
+    public static final int numberOfTextFieldsAndImages = 4;
     private WebElement webElement;
 
     @Test
@@ -22,68 +25,61 @@ public class Exercise1Test extends PrepostConditions {
         softAssert.assertEquals(webdriver.getTitle(), "Home Page");
 
         // 3. Perform login
-        webdriver.findElement(By.cssSelector("li[class='dropdown uui-profile-menu'] > a[class='dropdown-toggle']"))
-                 .click();
+        webdriver.findElement(By.cssSelector("li.dropdown.uui-profile-menu > a.dropdown-toggle")).click();
         webdriver.findElement(By.id("name")).sendKeys("Roman");
         webdriver.findElement(By.id("password")).sendKeys("Jdi1234");
         webdriver.findElement(By.id("login-button")).click();
 
-        // 4. Assert Username is loggined
-        softAssert.assertEquals(webdriver.findElement(By.cssSelector("span[id='user-name']")).getText(),
+        // 4. Assert Username is logged in
+        softAssert.assertEquals(webdriver.findElement(By.cssSelector("span#user-name")).getText(),
             "ROMAN IOVLEV");
 
         // 5. Assert that 4 items on the header section are displayed and have proper texts
-        webElement = webdriver.findElement(By.cssSelector("header a[href = 'index.html']"));
-        softAssert.assertTrue(webElement.isDisplayed());
-        softAssert.assertEquals(webElement.getText(), "HOME");
+        List<String> cssSelectorsForHeaderItems = Arrays.asList(
+            "header a[href = 'index.html']", "header a[href = 'contacts.html']",
+            "header a.dropdown-toggle", "header a[href = 'metals-colors.html']");
 
-        webElement = webdriver.findElement(By.cssSelector("header a[href = 'contacts.html']"));
-        softAssert.assertTrue(webElement.isDisplayed());
-        softAssert.assertEquals(webElement.getText(), "CONTACT FORM");
+        List<String> listOfNamesForHeaderItems = cssSelectorsForHeaderItems.stream().map(
+            elem -> webdriver.findElement(By.cssSelector(elem)).getText()).collect(Collectors.toList());
 
-        webElement = webdriver.findElement(By.cssSelector("header a[class = 'dropdown-toggle']"));
-        softAssert.assertTrue(webElement.isDisplayed());
-        softAssert.assertEquals(webElement.getText(), "SERVICE");
+        cssSelectorsForHeaderItems.stream().forEach(elem ->
+            softAssert.assertTrue(webdriver.findElement(By.cssSelector(elem)).isDisplayed()));
 
-        webElement = webdriver.findElement(By.cssSelector("header a[href = 'metals-colors.html']"));
-        softAssert.assertTrue(webElement.isDisplayed());
-        softAssert.assertEquals(webElement.getText(), "METALS & COLORS");
+        List<String> expectedListOfNamesForHeaderItems = Arrays.asList(
+            "HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
+
+        softAssert.assertEquals(listOfNamesForHeaderItems, expectedListOfNamesForHeaderItems);
 
         // 6. Assert that there are 4 images on the Index Page and they are displayed
-        softAssert.assertEquals(webdriver.findElements(By.className("benefit-icon")).size(), 4);
+        List<String> cssSelectorsForImages = Arrays.asList(
+            "span.icons-benefit.icon-practise", "span.icons-benefit.icon-custom",
+            "span.icons-benefit.icon-multi", "span.icons-benefit.icon-base");
 
-        softAssert.assertTrue(webdriver.findElement(By.cssSelector("span[class='icons-benefit icon-practise']"))
-                                       .isDisplayed());
-        softAssert.assertTrue(webdriver.findElement(By.cssSelector("span[class='icons-benefit icon-custom']"))
-                                       .isDisplayed());
-        softAssert.assertTrue(webdriver.findElement(By.cssSelector("span[class='icons-benefit icon-multi']"))
-                                       .isDisplayed());
-        softAssert.assertTrue(webdriver.findElement(By.cssSelector("span[class='icons-benefit icon-base']"))
-                                       .isDisplayed());
+        softAssert.assertEquals(webdriver.findElements(By.className("benefit-icon")).size(),
+            numberOfTextFieldsAndImages);
+        cssSelectorsForImages.stream().forEach(elem -> softAssert.assertTrue(
+            webdriver.findElement(By.cssSelector(elem)).isDisplayed()));
 
         // 7. Assert that there are 4 texts on the Index Page under icons and they have proper text
         // (According to teacher's recommendations, it was decided to exclude the requirement of
         // searching these 4 texts under the icons. So, each text is searched as is, without
         // any connections to points in space)
-        List<WebElement> listOfTextFields = webdriver.findElements(By.className("benefit-txt"));
+        List<WebElement> listOfWebElementUnderIconsTextFields = webdriver.findElements(By.className("benefit-txt"));
 
-        softAssert.assertEquals(listOfTextFields.size(), 4);
+        List<String> listOfUnderIconsTextFields = listOfWebElementUnderIconsTextFields.stream().map(
+            elem -> elem.getText()).collect(Collectors.toList());
 
-        softAssert.assertTrue(listOfTextFields.get(0).isDisplayed());
-        softAssert.assertEquals(listOfTextFields.get(0).getText(),
-            "To include good practices\nand ideas from successful\nEPAM project");
-
-        softAssert.assertTrue(listOfTextFields.get(1).isDisplayed());
-        softAssert.assertEquals(listOfTextFields.get(1).getText(), "To be flexible and\ncustomizable");
-
-        softAssert.assertTrue(listOfTextFields.get(2).isDisplayed());
-        softAssert.assertEquals(listOfTextFields.get(2).getText(), "To be multiplatform");
-
-        softAssert.assertTrue(listOfTextFields.get(3).isDisplayed());
-        softAssert.assertEquals(listOfTextFields.get(3).getText(),
+        List<String> expectedListOfUnderIconsTextFields = Arrays.asList(
+            "To include good practices\nand ideas from successful\nEPAM project",
+            "To be flexible and\ncustomizable",
+            "To be multiplatform",
             "Already have good base\n(about 20 internal and\nsome external projects),\nwish to get more…");
 
-        // 8. Assert that there is the iframe with “Frame Button” exist
+        softAssert.assertEquals(listOfWebElementUnderIconsTextFields.size(), numberOfTextFieldsAndImages);
+        listOfWebElementUnderIconsTextFields.stream().forEach(elem -> softAssert.assertTrue(elem.isDisplayed()));
+        softAssert.assertEquals(listOfUnderIconsTextFields, expectedListOfUnderIconsTextFields);
+
+        // 8. Assert that the iframe with “Frame Button” exists
         // (Cause step #9 checks whether “Frame Button” exists in the iframe,
         // it was decided to check only existence of the frame)
         softAssert.assertEquals(webdriver.findElement(By.tagName("iframe")).isDisplayed(), true);
@@ -97,27 +93,25 @@ public class Exercise1Test extends PrepostConditions {
         webdriver.switchTo().defaultContent();
 
         // 11. Assert that 5 items in the Left Section are displayed and have proper text
-        webElement = webdriver.findElement(By.cssSelector("ul[class='sidebar-menu left'] a[href = 'index.html']"));
-        softAssert.assertTrue(webElement.isDisplayed());
-        softAssert.assertEquals(webElement.getText(), "Home");
+        List<String> cssSelectorsForLeftSectionMenu = Arrays.asList("ul.sidebar-menu.left a[href = 'index.html']",
+            "ul.sidebar-menu.left a[href = 'contacts.html']",
+            "ul.sidebar-menu.left li[index = '3'] > a",
+            "ul.sidebar-menu.left a[href = 'metals-colors.html']",
+            "ul.sidebar-menu.left li.menu-title:nth-child(5) span");
 
-        webElement = webdriver.findElement(By.cssSelector("ul[class='sidebar-menu left'] a[href = 'contacts.html']"));
-        softAssert.assertTrue(webElement.isDisplayed());
-        softAssert.assertEquals(webElement.getText(), "Contact form");
+        List<WebElement> listOfWebElementsLeftSectionItems = cssSelectorsForLeftSectionMenu.stream().map(
+            elem -> webdriver.findElement(By.cssSelector(elem))).collect(Collectors.toList());
 
-        webElement = webdriver.findElement(By.cssSelector("ul[class='sidebar-menu left'] li[index = '3'] > a"));
-        softAssert.assertTrue(webElement.isDisplayed());
-        softAssert.assertEquals(webElement.getText(), "Service");
+        listOfWebElementsLeftSectionItems.stream().forEach(
+            elem -> softAssert.assertTrue(elem.isDisplayed()));
 
-        webElement = webdriver.findElement(By.cssSelector("ul[class='sidebar-menu left'] "
-            + "a[href = 'metals-colors.html']"));
-        softAssert.assertTrue(webElement.isDisplayed());
-        softAssert.assertEquals(webElement.getText(), "Metals & Colors");
+        List<String> listOfLeftSectionItemNames = listOfWebElementsLeftSectionItems.stream().map(
+            elem -> elem.getText()).collect(Collectors.toList());
 
-        webElement = webdriver
-            .findElement(By.cssSelector("ul[class='sidebar-menu left'] li[class='menu-title']:nth-child(5) span"));
-        softAssert.assertTrue(webElement.isDisplayed());
-        softAssert.assertEquals(webElement.getText(), "Elements packs");
+        List<String> expectedListOfLeftSectionItemNames = Arrays.asList(
+            "Home", "Contact form", "Service", "Metals & Colors", "Elements packs");
+
+        softAssert.assertEquals(listOfLeftSectionItemNames, expectedListOfLeftSectionItemNames);
 
         softAssert.assertAll();
     }

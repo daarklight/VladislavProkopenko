@@ -1,5 +1,6 @@
 package ru.training.at.hw2.ex2;
 
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -9,6 +10,7 @@ import ru.training.at.hw2.commonsteps.PrepostConditions;
 
 public class Exercise2Test extends PrepostConditions {
 
+    public static final int numberOfUniqueElement = 1;
     private WebElement webElement;
 
     @Test
@@ -21,18 +23,17 @@ public class Exercise2Test extends PrepostConditions {
         Assert.assertEquals(webdriver.getTitle(), "Home Page");
 
         // 3. Perform login
-        webdriver.findElement(By.cssSelector("li[class='dropdown uui-profile-menu'] > a[class='dropdown-toggle']"))
-                 .click();
+        webdriver.findElement(By.cssSelector("li.dropdown.uui-profile-menu > a.dropdown-toggle")).click();
         webdriver.findElement(By.id("name")).sendKeys("Roman");
         webdriver.findElement(By.id("password")).sendKeys("Jdi1234");
         webdriver.findElement(By.id("login-button")).click();
 
-        // 4. Assert Username is loggined
-        Assert.assertEquals(webdriver.findElement(By.cssSelector("span[id='user-name']")).getText(),
+        // 4. Assert Username is logged in
+        Assert.assertEquals(webdriver.findElement(By.cssSelector("span#user-name")).getText(),
             "ROMAN IOVLEV");
 
         // 5. Open through the header menu Service -> Different Elements Page
-        webdriver.findElement(By.cssSelector("header a[class = 'dropdown-toggle']")).click();
+        webdriver.findElement(By.cssSelector("header a.dropdown-toggle")).click();
         webdriver.findElement(By.cssSelector("header a[href = 'different-elements.html']")).click();
 
         // 6. Select checkboxes
@@ -51,26 +52,27 @@ public class Exercise2Test extends PrepostConditions {
         // - for each checkbox there is an individual log row and value is corresponded to the status of checkbox;
         // - for radio button there is a log row and value is corresponded to the status of radio button;
         // - for dropdown there is a log row and value is corresponded to the selected value;
-        webElement = webdriver
-            .findElement(By.xpath(
+        List<WebElement> listForRadioButton = webdriver
+            .findElements(By.xpath(
                 "//div[@class = 'info-panel-section']//child::li[contains(text(), 'value changed to') "
                     + "and contains(text(), 'Selen')]"));
-        System.out.println("Log row contains the info that metal value was changed to Selen");
+        Assert.assertEquals(listForRadioButton.size(), numberOfUniqueElement);
 
-        webElement = webdriver
-            .findElement(By.xpath(
+        List<WebElement> listForCheckBox1 = webdriver
+            .findElements(By.xpath(
                 "//div[@class = 'info-panel-section']//child::li[contains(text(), 'Water') "
                     + "and contains(text(), 'true')]"));
-        System.out.println("Log row contains the value of checkbox named Water and this value is true");
-        webElement = webdriver
-            .findElement(By.xpath(
+        Assert.assertEquals(listForCheckBox1.size(), numberOfUniqueElement);
+
+        List<WebElement> listForCheckBox2 = webdriver
+            .findElements(By.xpath(
                 "//div[@class = 'info-panel-section']//child::li[contains(text(), 'Wind') "
                     + "and contains(text(), 'true')]"));
-        System.out.println("Log row contains the value of checkbox named Wind and this value is true");
+        Assert.assertEquals(listForCheckBox2.size(), numberOfUniqueElement);
 
-        webElement = webdriver
-            .findElement(By.xpath(
+        List<WebElement> listForDropdown = webdriver
+            .findElements(By.xpath(
                 "//div[@class = 'info-panel-section']//child::li[contains(text(), 'value changed to Yellow')]"));
-        System.out.println("Log row contains the info that color was changed to Yellow");
+        Assert.assertEquals(listForDropdown.size(), numberOfUniqueElement);
     }
 }
