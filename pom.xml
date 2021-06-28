@@ -16,8 +16,8 @@
 
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <checkstyle.version>8.42</checkstyle.version>
-        <testng.configs.pathHW2>${project.basedir}/src/test/java/ru/training/at/hw2/resources
-        </testng.configs.pathHW2>
+        <testng.configs.path.hw2>${project.basedir}/src/test/java/ru/training/at/hw2/resources
+        </testng.configs.path.hw2>
         <testng.suite.file/>
         <webdrivermanager.version>4.4.3</webdrivermanager.version>
         <selenium-java.version>4.0.0-beta-3</selenium-java.version>
@@ -98,26 +98,26 @@
 
     <profiles>
         <profile>
-            <id>HW2 Both exercises</id>
+            <id>HW2-Both exercises</id>
           <activation>
             <activeByDefault>true</activeByDefault>
           </activation>
             <properties>
-                <testng.suite.file>${testng.configs.pathHW2}/HW2AllTests.xml</testng.suite.file>
+                <testng.suite.file>${testng.configs.path.hw2}/AllTests.xml</testng.suite.file>
             </properties>
         </profile>
 
       <profile>
-        <id>HW2 OnlyExercise1Test</id>
+        <id>HW2-OnlyExercise1Test</id>
         <properties>
-          <testng.suite.file>${testng.configs.pathHW2}/HW2OnlyExercise1Test.xml</testng.suite.file>
+          <testng.suite.file>${testng.configs.path.hw2}/OnlyExercise1Test.xml</testng.suite.file>
         </properties>
       </profile>
 
       <profile>
-        <id>HW2 OnlyExercise2Test</id>
+        <id>HW2-OnlyExercise2Test</id>
         <properties>
-          <testng.suite.file>${testng.configs.pathHW2}/HW2OnlyExercise2Test.xml</testng.suite.file>
+          <testng.suite.file>${testng.configs.path.hw2}/OnlyExercise2Test.xml</testng.suite.file>
         </properties>
       </profile>
 
