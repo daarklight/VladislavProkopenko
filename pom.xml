@@ -1,125 +1,226 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>Homework</artifactId>
-    <version>1.0-SNAPSHOT</version>
+  <groupId>org.example</groupId>
+  <artifactId>Homework</artifactId>
+  <version>1.0-SNAPSHOT</version>
 
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+
+    <testng.version>7.4.0</testng.version>
+
+    <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+    <checkstyle.version>8.42</checkstyle.version>
+    <testng.configs.path.hw2>${project.basedir}/src/test/java/ru/training/at/hw2/resources
+    </testng.configs.path.hw2>
+    <testng.suite.file/>
+    <webdrivermanager.version>4.4.3</webdrivermanager.version>
+    <selenium-java.version>4.0.0-beta-3</selenium-java.version>
+    <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+  </properties>
+
+
+  <dependencies>
+
+    <dependency>
+      <groupId>io.github.bonigarcia</groupId>
+      <artifactId>webdrivermanager</artifactId>
+      <version>${webdrivermanager.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${testng.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>${selenium-java.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven-surefire-plugin.version}</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>${testng.suite.file}</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${maven-checkstyle-plugin.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>${checkstyle.version}</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <configLocation>
+            https://raw.githubusercontent.com/DmitryKhodakovsky/epam-training-center-code-checkers-configurations/main/checkstyle/checkstyle.xml
+          </configLocation>
+          <includeTestSourceDirectory>true</includeTestSourceDirectory>
+          <violationSeverity>warning</violationSeverity>
+          <consoleOutput>true</consoleOutput>
+        </configuration>
+        <executions>
+          <execution>
+            <id>validate</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+
+  <profiles>
+  <profile>
+    <id>HW2-Both exercises</id>
+    <activation>
+      <activeByDefault>true</activeByDefault>
+    </activation>
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-
-        <testng.version>7.4.0</testng.version>
-
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <checkstyle.version>8.42</checkstyle.version>
-        <testng.configs.path.hw2>${project.basedir}/src/test/java/ru/training/at/hw2/resources
-        </testng.configs.path.hw2>
-        <testng.suite.file/>
-        <webdrivermanager.version>4.4.3</webdrivermanager.version>
-        <selenium-java.version>4.0.0-beta-3</selenium-java.version>
-        <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+      <testng.suite.file>${testng.configs.path.hw2}/AllTests.xml</testng.suite.file>
     </properties>
+  </profile>
+
+  <profile>
+    <id>HW2-OnlyExercise1Test</id>
+    <properties>
+      <testng.suite.file>${testng.configs.path.hw2}/OnlyExercise1Test.xml</testng.suite.file>
+    </properties>
+  </profile>
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+
+    <testng.configs.path>${project.basedir}/src/test/java/ru/training/at/hw1/resources
+    </testng.configs.path>
+    <testng.suite.file/>
+
+    <testng.version>7.4.0</testng.version>
+    <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+    <checkstyle.version>8.42</checkstyle.version>
+    <calculator.version>1.0</calculator.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.epam.tat</groupId>
+      <artifactId>calculator</artifactId>
+      <scope>system</scope>
+      <version>${calculator.version}</version>
+      <systemPath>${project.basedir}/src/main/resources/calculator-1.0.jar</systemPath>
+    </dependency>
+
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${testng.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven-surefire-plugin.version}</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>${testng.suite.file}</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.1.2</version>
+        <dependencies>
+          <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>${checkstyle.version}</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <configLocation>
+            https://raw.githubusercontent.com/DmitryKhodakovsky/epam-training-center-code-checkers-configurations/main/checkstyle/checkstyle.xml
+          </configLocation>
+          <includeTestSourceDirectory>true</includeTestSourceDirectory>
+          <violationSeverity>warning</violationSeverity>
+          <consoleOutput>true</consoleOutput>
+        </configuration>
+        <executions>
+          <execution>
+            <id>validate</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 
-    <dependencies>
+  <profiles>
+    <profile>
+      <id>additionAndSubtractionTests</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <testng.suite.file>${testng.configs.path}/AdditionAndSubtractionTests.xml</testng.suite.file>
+      </properties>
+    </profile>
 
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
-            <scope>test</scope>
-        </dependency>
+    <profile>
+      <id>divisionAndMultiplicationTests</id>
+      <properties>
+        <testng.suite.file>${testng.configs.path}/DivisionAndMultiplicationTests.xml</testng.suite.file>
+      </properties>
+    </profile>
 
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium-java.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <profile>
+      <id>allTests</id>
+      <properties>
+        <testng.suite.file>${testng.configs.path}/AllTests.xml</testng.suite.file>
+      </properties>
+    </profile>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
-                <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>${testng.suite.file}</suiteXmlFile>
-                    </suiteXmlFiles>
-                </configuration>
-            </plugin>
+    <profile>
+      <id>HW2-OnlyExercise2Test</id>
+      <properties>
+        <testng.suite.file>${testng.configs.path.hw2}/OnlyExercise2Test.xml</testng.suite.file>
+      </properties>
+    </profile>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${maven-checkstyle-plugin.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.puppycrawl.tools</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>${checkstyle.version}</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <configLocation>
-                        https://raw.githubusercontent.com/DmitryKhodakovsky/epam-training-center-code-checkers-configurations/main/checkstyle/checkstyle.xml
-                    </configLocation>
-                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                    <violationSeverity>warning</violationSeverity>
-                    <consoleOutput>true</consoleOutput>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>validate</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
-
-    <profiles>
-        <profile>
-            <id>HW2-Both exercises</id>
-          <activation>
-            <activeByDefault>true</activeByDefault>
-          </activation>
-            <properties>
-                <testng.suite.file>${testng.configs.path.hw2}/AllTests.xml</testng.suite.file>
-            </properties>
-        </profile>
-
-      <profile>
-        <id>HW2-OnlyExercise1Test</id>
-        <properties>
-          <testng.suite.file>${testng.configs.path.hw2}/OnlyExercise1Test.xml</testng.suite.file>
-        </properties>
-      </profile>
-
-      <profile>
-        <id>HW2-OnlyExercise2Test</id>
-        <properties>
-          <testng.suite.file>${testng.configs.path.hw2}/OnlyExercise2Test.xml</testng.suite.file>
-        </properties>
-      </profile>
-
-    </profiles>
-  </project>
+  </profiles>
+</project>
