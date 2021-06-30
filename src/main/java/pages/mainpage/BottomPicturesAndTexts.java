@@ -1,57 +1,48 @@
 package pages.mainpage;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 public class BottomPicturesAndTexts {
 
-    @FindAll({@FindBy(css = "span.icons-benefit.icon-practise"),
-                 @FindBy(css = "span.icons-benefit.icon-custom"),
-                 @FindBy(css = "span.icons-benefit.icon-multi"),
-                 @FindBy(css = "span.icons-benefit.icon-base")})
-    public List<WebElement> cssSelectorsForImages;
-
-    @FindAll({@FindBy(className = "benefit-icon")})
+    @FindBy(css = "div.benefit > div.benefit-icon")
     public List<WebElement> benefitImagesWebElements;
 
-    public int checkNumberOfImages() {
-        return benefitImagesWebElements.size();
-    }
-
-    public boolean checkIfAllImagesAreDisplayed() {
-        try {
-            cssSelectorsForImages.stream().forEach(elem -> elem.isDisplayed());
-            return true;
-        } catch (StaleElementReferenceException e) {
-            return false;
+    public void checkNumberOfImages(int requiredNumberOfImages) {
+        if (benefitImagesWebElements.size() != requiredNumberOfImages) {
+            throw new StaleElementReferenceException("Number of benefit images is wrong");
         }
     }
 
-    @FindAll({@FindBy(className = "benefit-txt")})
+    public void checkIfAllImagesAreDisplayed() {
+        benefitImagesWebElements.stream().forEach(elem -> {
+            if (!elem.isDisplayed()) {
+                throw new StaleElementReferenceException("Benefit images are not displayed");
+            }
+        });
+    }
+
+    @FindBy(css = "div.benefit > span.benefit-txt")
     public List<WebElement> benefitTextsWebElements;
 
-    public int checkNumberOfBenefitTexts() {
-        return benefitTextsWebElements.size();
+    public void checkNumberOfBenefitTexts(int requiredNumberOfTexts) {
+        if (benefitTextsWebElements.size() != requiredNumberOfTexts) {
+            throw new StaleElementReferenceException("Number of benefit texts is wrong");
+        }
     }
 
-    public List<String> checkDisplayedBenefitTexts() {
-        List<String> listOfUnderIconsTextFields = benefitTextsWebElements.stream().map(
+    public void checkIfBenefitTextsAreAsExpected(String expectedTexts) {
+        List<String> listOfBenefitTexts = benefitTextsWebElements.stream().map(
             elem -> elem.getText()).collect(Collectors.toList());
-        return listOfUnderIconsTextFields;
-    }
-
-    public List<String> showExpectedListOfNamesForHeaderItems(String benefitText1, String benefitText2,
-                                                              String benefitText3, String benefitText4) {
-        List<String> expectedListOfUnderIconsTextFields = Arrays.asList(
-            benefitText1,
-            benefitText2,
-            benefitText3,
-            benefitText4);
-        return expectedListOfUnderIconsTextFields;
+        List<String> expectedListOfBenefitTexts = Stream.of(expectedTexts.split(" ; ")).map(
+            elem -> new String(elem)).collect(Collectors.toList());
+        String str2 = expectedListOfBenefitTexts.stream().collect(Collectors.joining("\n"));
+        if (!listOfBenefitTexts.equals(expectedListOfBenefitTexts)) {
+            throw new StaleElementReferenceException("Displayed and expected benefit texts are not the same");
+        }
     }
 }

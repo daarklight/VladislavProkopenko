@@ -7,21 +7,21 @@ import org.openqa.selenium.support.ui.Select;
 public class ButtonsAndDropdownArea {
 
     @FindBy(xpath = "//label[text()[contains(.,'Water')]]/input")
-    public WebElement waterCheckBoxWebElement;
+    public WebElement webElementForCheckbox1;
 
     @FindBy(xpath = "//label[text()[contains(.,'Wind')]]/input")
-    public WebElement windCheckBoxWebElement;
+    public WebElement webElementForCheckbox2;
 
     public void clickCheckBoxes() {
-        waterCheckBoxWebElement.click();
-        windCheckBoxWebElement.click();
+        webElementForCheckbox1.click();
+        webElementForCheckbox2.click();
     }
 
     @FindBy(xpath = "//label[text()[contains(.,'Selen')]]/input")
-    public WebElement selenRadioButton;
+    public WebElement radioButton;
 
     public void clickRadioButton() {
-        selenRadioButton.click();
+        radioButton.click();
     }
 
     @FindBy(xpath = "//div[@class = 'colors']/child::select")

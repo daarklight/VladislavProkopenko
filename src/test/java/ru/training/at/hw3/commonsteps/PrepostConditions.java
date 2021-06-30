@@ -28,12 +28,6 @@ public class PrepostConditions {
         FileInputStream fileInputStream = null;
         try {
             fileInputStream = new FileInputStream(filePath);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        // Load property file:
-        try {
             properties.load(new InputStreamReader(fileInputStream, StandardCharsets.UTF_8));
         } catch (IOException e) {
             e.printStackTrace();

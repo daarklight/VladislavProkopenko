@@ -1,45 +1,40 @@
 package pages.mainpage;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 public class HeaderMenu {
 
-    @FindAll({@FindBy(css = "header a[href = 'index.html']"),
-                 @FindBy(css = "header a[href = 'contacts.html']"),
-                 @FindBy(css = "header ul.uui-navigation.nav.navbar-nav.m-l8 a.dropdown-toggle"),
-                 @FindBy(css = "header a[href = 'metals-colors.html']")})
+    @FindBy(css = "ul.uui-navigation.nav.navbar-nav.m-l8 > li")
     public List<WebElement> listOfHeaderItemsWebElements;
 
-    public boolean checkIfHeaderItemsAreDisplayed() {
-        try {
-            listOfHeaderItemsWebElements.stream().forEach(elem -> elem.isDisplayed());
-            return true;
-        } catch (StaleElementReferenceException e) {
-            return false;
+    public void checkIfHeaderItemsAreDisplayed() {
+        listOfHeaderItemsWebElements.stream().forEach(elem -> {
+            if (!elem.isDisplayed()) {
+                throw new StaleElementReferenceException("Header menu items are not displayed");
+            }
+        });
+    }
+
+    public void checkNumberOfHeaderItems(int expectedNumberOfHeaderItems) {
+        if (listOfHeaderItemsWebElements.size() != expectedNumberOfHeaderItems) {
+            throw new StaleElementReferenceException("Number of header items is wrong");
         }
     }
 
-    public int checkNumberOfHeaderItems() {
-        return listOfHeaderItemsWebElements.size();
-    }
-
-    public List<String> checkDisplayedHeaderTexts() {
+    public void checkIfNamesOfHeaderMenuItemsAreAsExpected(String expectedNames) {
         List<String> listOfNamesForHeaderItems = listOfHeaderItemsWebElements.stream().map(
             elem -> elem.getText()).collect(Collectors.toList());
-        return listOfNamesForHeaderItems;
-    }
-
-    public List<String> showExpectedListOfNamesForHeaderItems(String headerMenuItem1, String headerMenuItem2,
-                                                              String headerMenuItem3, String headerMenuItem4) {
-        List<String> expectedListOfNamesForHeaderItems = Arrays.asList(
-            headerMenuItem1, headerMenuItem2, headerMenuItem3, headerMenuItem4);
-        return expectedListOfNamesForHeaderItems;
+        List<String> expectedListOfHeaderMenuItemsNames = Stream.of(expectedNames.split(" ; ")).map(
+            elem -> new String(elem)).collect(Collectors.toList());
+        if (!listOfNamesForHeaderItems.equals(expectedListOfHeaderMenuItemsNames)) {
+            throw new StaleElementReferenceException(
+                "Displayed and expected names of header menu items are not the same");
+        }
     }
 
     @FindBy(css = "header ul.uui-navigation.nav.navbar-nav.m-l8 a.dropdown-toggle")
