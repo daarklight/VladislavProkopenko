@@ -3,10 +3,8 @@ package ru.training.at.hw3.commonsteps;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Properties;
@@ -21,17 +19,14 @@ public class PrepostConditions {
     protected Properties properties = new Properties();
 
     @BeforeClass
-    public void setUpClass() {
+    public void setUpClass() throws IOException {
 
         File filePath = new File("src/test/resources/PageData.properties");
 
         FileInputStream fileInputStream = null;
-        try {
-            fileInputStream = new FileInputStream(filePath);
-            properties.load(new InputStreamReader(fileInputStream, StandardCharsets.UTF_8));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        fileInputStream = new FileInputStream(filePath);
+        properties.load(new InputStreamReader(fileInputStream, StandardCharsets.UTF_8));
 
         WebDriverManager.chromedriver().setup();
         webdriver = new ChromeDriver();

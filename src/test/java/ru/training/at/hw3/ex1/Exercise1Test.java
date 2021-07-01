@@ -1,5 +1,6 @@
 package ru.training.at.hw3.ex1;
 
+import java.util.Arrays;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -14,7 +15,8 @@ import ru.training.at.hw3.resources.DataProviders;
 public class Exercise1Test extends PrepostConditions {
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "Names of Header Menu Items")
-    public void testExercise1TestStepsFrom1To6(String expectedNamesOfHeaderMenuItems) {
+    public void testExercise1TestStepsFrom1To6(String[] expectedNamesOfHeaderMenuItems) {
+
         // 2. Assert Browser title
         Assert.assertEquals(webdriver.getTitle(), properties.getProperty("titleForMainPage"));
 
@@ -27,14 +29,14 @@ public class Exercise1Test extends PrepostConditions {
 
         // 5. Assert that 4 items on the header section are displayed and have proper texts
         HeaderMenu headerMenu = PageFactory.initElements(webdriver, HeaderMenu.class);
-        headerMenu.checkIfNamesOfHeaderMenuItemsAreAsExpected(expectedNamesOfHeaderMenuItems);
         headerMenu.checkIfHeaderItemsAreDisplayed();
-        headerMenu.checkNumberOfHeaderItems(Integer.parseInt(properties.getProperty("expectedNumberOfHeaderItems")));
+        // headerMenu.checkNumberOfHeaderItems(Integer.parseInt(properties.getProperty("expectedNumberOfHeaderItems")));
+        Assert.assertEquals(headerMenu.transferListOfHeaderMenuItems(),
+            Arrays.asList(expectedNamesOfHeaderMenuItems));
 
         // 6. Assert that there are 4 images on the Index Page and they are displayed
         BottomPicturesAndTexts bottomPicturesAndTexts =
             PageFactory.initElements(webdriver, BottomPicturesAndTexts.class);
-
 
         bottomPicturesAndTexts.checkNumberOfImages(
             Integer.parseInt(properties.getProperty("expectedNumberOfTextFieldsAndImages")));
@@ -42,16 +44,17 @@ public class Exercise1Test extends PrepostConditions {
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "Benefit Texts")
-    public void testExercise1TestStepsFrom7To10(String expectedBenefitTexts) {
+    public void testExercise1TestStepsFrom7To10(String[] expectedBenefitTexts) {
         // 7. Assert that there are 4 texts on the Index Page under icons and they have proper text
         // (According to teacher's recommendations, it was decided to exclude the requirement of
         // searching these 4 texts under the icons. So, each text is searched as is, without
         // any connections to points in space)
         BottomPicturesAndTexts bottomPicturesAndTexts =
             PageFactory.initElements(webdriver, BottomPicturesAndTexts.class);
-        bottomPicturesAndTexts.checkNumberOfBenefitTexts(
-            Integer.parseInt(properties.getProperty("expectedNumberOfTextFieldsAndImages")));
-        bottomPicturesAndTexts.checkIfBenefitTextsAreAsExpected(expectedBenefitTexts);
+        //        bottomPicturesAndTexts.checkNumberOfBenefitTexts(
+        //            Integer.parseInt(properties.getProperty("expectedNumberOfTextFieldsAndImages")));
+        Assert.assertEquals(bottomPicturesAndTexts.transferListOfBenefitTexts(),
+            Arrays.asList(expectedBenefitTexts));
 
         // 8. Assert that the iframe with “Frame Button” exists
         // (Cause step #9 checks whether “Frame Button” exists in the iframe,
@@ -68,10 +71,11 @@ public class Exercise1Test extends PrepostConditions {
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "Names of Left Menu Items")
-    public void testExercise1TestStep11(String expectedNamesOfLeftMenuItems) {
+    public void testExercise1TestStep11(String[] expectedNamesOfLeftMenuItems) {
         // 11. Assert that 5 items in the Left Section are displayed and have proper text
         LeftMenu leftMenu = PageFactory.initElements(webdriver, LeftMenu.class);
         leftMenu.checkIfLeftMenuItemsAreDisplayed();
-        leftMenu.checkIfNamesOfLeftMenuItemsAreAsExpected(expectedNamesOfLeftMenuItems);
+        Assert.assertEquals(leftMenu.transferListOfLeftMenuItems(),
+            Arrays.asList(expectedNamesOfLeftMenuItems));
     }
 }

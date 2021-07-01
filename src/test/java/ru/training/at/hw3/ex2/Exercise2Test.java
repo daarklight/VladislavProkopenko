@@ -1,5 +1,6 @@
 package ru.training.at.hw3.ex2;
 
+import java.util.Arrays;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,9 +13,9 @@ import ru.training.at.hw3.resources.DataProviders;
 
 public class Exercise2Test extends PrepostConditions {
 
-
     @Test(dataProviderClass = DataProviders.class, dataProvider = "Texts in Log")
-    public void testExercise2Test(String expectedLogRowsTexts) {
+    public void testExercise2Test(String[] expectedLogRowsTexts) {
+
         // 2. Assert Browser title
         Assert.assertEquals(webdriver.getTitle(), properties.getProperty("titleForMainPage"));
 
@@ -45,8 +46,7 @@ public class Exercise2Test extends PrepostConditions {
         // - for radio button there is a log row and value is corresponded to the status of radio button;
         // - for dropdown there is a log row and value is corresponded to the selected value;
         LogArea logArea = PageFactory.initElements(webdriver, LogArea.class);
-        logArea.checkIfLogRowsExistForAllButtonsAndDropdown(expectedLogRowsTexts);
-
+        Assert.assertEquals(logArea.transferListOfLogRowsTexts(), Arrays.asList(expectedLogRowsTexts));
 
     }
 }

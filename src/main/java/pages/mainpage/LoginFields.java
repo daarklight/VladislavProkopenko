@@ -1,6 +1,6 @@
 package pages.mainpage;
 
-import org.openqa.selenium.StaleElementReferenceException;
+import java.util.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -30,7 +30,7 @@ public class LoginFields {
 
     public void checkIfUsernameIsLoggedIn(String displayedUsername) {
         if (!nameFieldOfLoggedUser.getText().equals(displayedUsername)) {
-            throw new StaleElementReferenceException("Displayed username is wrong");
+            throw new NoSuchElementException("Displayed username is wrong");
         }
     }
 }
