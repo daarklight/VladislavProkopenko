@@ -26,7 +26,7 @@ public class DataProvidersForExercise1Test {
                 properties.getProperty("password"),
                 properties.getProperty("displayedUsername"),
                 List.of("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS"),
-                4,
+                Integer.parseInt(properties.getProperty("expectedNumberOfTextFieldsAndImages")),
                 List.of("To include good practices\nand ideas from successful\nEPAM project",
                     "To be flexible and\ncustomizable",
                     "To be multiplatform",
