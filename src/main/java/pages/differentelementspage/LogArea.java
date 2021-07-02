@@ -8,11 +8,10 @@ import org.openqa.selenium.support.FindBy;
 public class LogArea {
 
     @FindBy(css = "ul.panel-body-list.logs > li")
-    public List<WebElement> logTextsWebElements;
+    private List<WebElement> logTextsWebElements;
 
     public List<String> transferListOfLogRowsTexts() {
-        List<String> listOfLogRowsTexts = logTextsWebElements.stream().map(
+        return logTextsWebElements.stream().map(
             elem -> elem.getText().substring(9)).collect(Collectors.toList());
-        return listOfLogRowsTexts;
     }
 }

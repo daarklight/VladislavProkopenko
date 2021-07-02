@@ -9,10 +9,10 @@ import org.openqa.selenium.support.FindBy;
 public class BottomPicturesAndTexts {
 
     @FindBy(css = "div.benefit > div.benefit-icon")
-    public List<WebElement> benefitImagesWebElements;
+    private List<WebElement> benefitImagesWebElements;
 
     @FindBy(css = "div.benefit > span.benefit-txt")
-    public List<WebElement> benefitTextsWebElements;
+    private List<WebElement> benefitTextsWebElements;
 
     public void checkNumberOfImages(int requiredNumberOfImages) {
         if (benefitImagesWebElements.size() != requiredNumberOfImages) {
@@ -29,8 +29,6 @@ public class BottomPicturesAndTexts {
     }
 
     public List<String> transferListOfBenefitTexts() {
-        List<String> listOfBenefitTexts = benefitTextsWebElements.stream().map(
-            elem -> elem.getText()).collect(Collectors.toList());
-        return listOfBenefitTexts;
+        return benefitTextsWebElements.stream().map(elem -> elem.getText()).collect(Collectors.toList());
     }
 }

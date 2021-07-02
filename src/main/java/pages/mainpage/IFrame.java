@@ -6,10 +6,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class IFrame {
     @FindBy(tagName = "iframe")
-    public WebElement iframeWebElement;
+    private WebElement iframeWebElement;
 
     @FindBy(xpath = "//input[@type='button'] [contains(@value, 'Frame Button')]")
-    public WebElement frameButtonWebElement;
+    private WebElement frameButtonWebElement;
 
     public void checkIfIframeExists() {
         if (!iframeWebElement.isDisplayed()) {

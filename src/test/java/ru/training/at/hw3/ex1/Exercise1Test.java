@@ -1,6 +1,6 @@
 package ru.training.at.hw3.ex1;
 
-import java.util.Arrays;
+import java.util.List;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -10,51 +10,47 @@ import pages.mainpage.IFrame;
 import pages.mainpage.LeftMenu;
 import pages.mainpage.LoginFields;
 import ru.training.at.hw3.commonsteps.PrepostConditions;
-import ru.training.at.hw3.resources.DataProviders;
+import ru.training.at.hw3.resources.DataProvidersForExercise1Test;
 
 public class Exercise1Test extends PrepostConditions {
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "Names of Header Menu Items")
-    public void testExercise1TestStepsFrom1To6(String[] expectedNamesOfHeaderMenuItems) {
+    @Test(dataProviderClass = DataProvidersForExercise1Test.class, dataProvider = "Data for Exercise1Test")
+    public void testExercise1Test(
+        String mainPageURL, String titleForMainPage, String username, String password,
+        String displayedUsername, List<String> expectedNamesOfHeaderMenuItems,
+        int expectedNumberOfTextFieldsAndImages, List<String> expectedBenefitTexts,
+        String iframeName, List<String> expectedNamesOfLeftMenuItems) {
+
+        // 1. Open test site by URL
+        webdriver.navigate().to(mainPageURL);
 
         // 2. Assert Browser title
-        Assert.assertEquals(webdriver.getTitle(), properties.getProperty("titleForMainPage"));
+        Assert.assertEquals(webdriver.getTitle(), titleForMainPage);
 
         // 3. Perform login
         LoginFields loginFields = PageFactory.initElements(webdriver, LoginFields.class);
-        loginFields.login(properties.getProperty("username"), properties.getProperty("password"));
+        loginFields.login(username, password);
 
         // 4. Assert Username is logged in
-        loginFields.checkIfUsernameIsLoggedIn(properties.getProperty("displayedUsername"));
+        loginFields.checkIfUsernameIsLoggedIn(displayedUsername);
 
         // 5. Assert that 4 items on the header section are displayed and have proper texts
         HeaderMenu headerMenu = PageFactory.initElements(webdriver, HeaderMenu.class);
         headerMenu.checkIfHeaderItemsAreDisplayed();
-        // headerMenu.checkNumberOfHeaderItems(Integer.parseInt(properties.getProperty("expectedNumberOfHeaderItems")));
-        Assert.assertEquals(headerMenu.transferListOfHeaderMenuItems(),
-            Arrays.asList(expectedNamesOfHeaderMenuItems));
+        Assert.assertEquals(headerMenu.transferListOfHeaderMenuItems(), expectedNamesOfHeaderMenuItems);
 
         // 6. Assert that there are 4 images on the Index Page and they are displayed
         BottomPicturesAndTexts bottomPicturesAndTexts =
             PageFactory.initElements(webdriver, BottomPicturesAndTexts.class);
-
-        bottomPicturesAndTexts.checkNumberOfImages(
-            Integer.parseInt(properties.getProperty("expectedNumberOfTextFieldsAndImages")));
+        bottomPicturesAndTexts.checkNumberOfImages(expectedNumberOfTextFieldsAndImages);
         bottomPicturesAndTexts.checkIfAllImagesAreDisplayed();
-    }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "Benefit Texts")
-    public void testExercise1TestStepsFrom7To10(String[] expectedBenefitTexts) {
         // 7. Assert that there are 4 texts on the Index Page under icons and they have proper text
         // (According to teacher's recommendations, it was decided to exclude the requirement of
         // searching these 4 texts under the icons. So, each text is searched as is, without
         // any connections to points in space)
-        BottomPicturesAndTexts bottomPicturesAndTexts =
-            PageFactory.initElements(webdriver, BottomPicturesAndTexts.class);
-        //        bottomPicturesAndTexts.checkNumberOfBenefitTexts(
-        //            Integer.parseInt(properties.getProperty("expectedNumberOfTextFieldsAndImages")));
         Assert.assertEquals(bottomPicturesAndTexts.transferListOfBenefitTexts(),
-            Arrays.asList(expectedBenefitTexts));
+            expectedBenefitTexts);
 
         // 8. Assert that the iframe with “Frame Button” exists
         // (Cause step #9 checks whether “Frame Button” exists in the iframe,
@@ -63,19 +59,15 @@ public class Exercise1Test extends PrepostConditions {
         iframe.checkIfIframeExists();
 
         // 9. Switch to the iframe and check that there is “Frame Button” in the iframe
-        webdriver.switchTo().frame(properties.getProperty("iframeName"));
+        webdriver.switchTo().frame(iframeName);
         iframe.checkIfIframeButtonExists();
 
         // 10. Switch to original window back
         webdriver.switchTo().defaultContent();
-    }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "Names of Left Menu Items")
-    public void testExercise1TestStep11(String[] expectedNamesOfLeftMenuItems) {
         // 11. Assert that 5 items in the Left Section are displayed and have proper text
         LeftMenu leftMenu = PageFactory.initElements(webdriver, LeftMenu.class);
         leftMenu.checkIfLeftMenuItemsAreDisplayed();
-        Assert.assertEquals(leftMenu.transferListOfLeftMenuItems(),
-            Arrays.asList(expectedNamesOfLeftMenuItems));
+        Assert.assertEquals(leftMenu.transferListOfLeftMenuItems(), expectedNamesOfLeftMenuItems);
     }
 }

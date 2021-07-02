@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class LeftMenu {
     @FindBy(css = "ul.sidebar-menu.left > li")
-    public List<WebElement> cssSelectorsForLeftSectionMenu;
+    private List<WebElement> cssSelectorsForLeftSectionMenu;
 
     public void checkIfLeftMenuItemsAreDisplayed() {
         cssSelectorsForLeftSectionMenu.stream().forEach(elem -> {
@@ -19,8 +19,6 @@ public class LeftMenu {
     }
 
     public List<String> transferListOfLeftMenuItems() {
-        List<String> listOfLeftMenuItemNames = cssSelectorsForLeftSectionMenu.stream().map(
-            elem -> elem.getText()).collect(Collectors.toList());
-        return listOfLeftMenuItemNames;
+        return cssSelectorsForLeftSectionMenu.stream().map(elem -> elem.getText()).collect(Collectors.toList());
     }
 }

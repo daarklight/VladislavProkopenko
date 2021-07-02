@@ -9,13 +9,13 @@ import org.openqa.selenium.support.FindBy;
 public class HeaderMenu {
 
     @FindBy(css = "ul.uui-navigation.nav.navbar-nav.m-l8 > li")
-    public List<WebElement> listOfHeaderItemsWebElements;
+    private List<WebElement> listOfHeaderItemsWebElements;
 
     @FindBy(css = "header ul.uui-navigation.nav.navbar-nav.m-l8 a.dropdown-toggle")
-    public WebElement serviceWebElement;
+    private WebElement serviceWebElement;
 
     @FindBy(css = "header a[href = 'different-elements.html']")
-    public WebElement differentElementsWebElement;
+    private WebElement differentElementsWebElement;
 
 
     public void checkIfHeaderItemsAreDisplayed() {
@@ -27,9 +27,7 @@ public class HeaderMenu {
     }
 
     public List<String> transferListOfHeaderMenuItems() {
-        List<String> listOfNamesForHeaderItems = listOfHeaderItemsWebElements.stream().map(
-            elem -> elem.getText()).collect(Collectors.toList());
-        return listOfNamesForHeaderItems;
+        return listOfHeaderItemsWebElements.stream().map(elem -> elem.getText()).collect(Collectors.toList());
     }
 
     public void clickDifferentElements() {
