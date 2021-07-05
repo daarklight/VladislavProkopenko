@@ -1,14 +1,14 @@
 package ru.training.at.hw4.steps;
 
 import org.openqa.selenium.WebDriver;
-import pages.differentelementspage.ButtonsAndDropdownArea;
-import pages.differentelementspage.LogArea;
-import pages.mainpage.BottomPicturesAndTexts;
-import pages.mainpage.CommonPageContent;
-import pages.mainpage.HeaderMenu;
-import pages.mainpage.IFrame;
-import pages.mainpage.LeftMenu;
-import pages.mainpage.LoginFields;
+import pages.hw4.differentelementspage.ButtonsAndDropdownArea;
+import pages.hw4.differentelementspage.LogArea;
+import pages.hw4.mainpage.BottomPicturesAndTexts;
+import pages.hw4.mainpage.CommonPageContent;
+import pages.hw4.mainpage.HeaderMenu;
+import pages.hw4.mainpage.IFrame;
+import pages.hw4.mainpage.LeftMenu;
+import pages.hw4.mainpage.LoginFields;
 
 public class AbstractSteps {
 

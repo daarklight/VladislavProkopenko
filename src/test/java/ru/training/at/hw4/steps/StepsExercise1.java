@@ -3,7 +3,6 @@ package ru.training.at.hw4.steps;
 import io.qameta.allure.Step;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 public class StepsExercise1 extends AbstractSteps {

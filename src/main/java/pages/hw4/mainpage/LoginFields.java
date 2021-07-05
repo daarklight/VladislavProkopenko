@@ -1,10 +1,10 @@
-package pages.mainpage;
+package pages.hw4.mainpage;
 
 import java.util.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.AbstractPage;
+import pages.hw4.AbstractPage;
 
 public class LoginFields extends AbstractPage {
 
