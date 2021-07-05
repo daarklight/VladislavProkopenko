@@ -3,10 +3,16 @@ package pages.mainpage;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.AbstractPage;
 
-public class HeaderMenu {
+public class HeaderMenu extends AbstractPage {
+
+    public HeaderMenu(WebDriver webdriver) {
+        super(webdriver);
+    }
 
     @FindBy(css = "ul.uui-navigation.nav.navbar-nav.m-l8 > li")
     private List<WebElement> listOfHeaderItemsWebElements;

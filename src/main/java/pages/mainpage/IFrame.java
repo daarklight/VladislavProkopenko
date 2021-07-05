@@ -1,10 +1,17 @@
 package pages.mainpage;
 
 import java.util.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.AbstractPage;
 
-public class IFrame {
+public class IFrame extends AbstractPage {
+
+    public IFrame(WebDriver webdriver) {
+        super(webdriver);
+    }
+
     @FindBy(tagName = "iframe")
     private WebElement iframeWebElement;
 
@@ -21,5 +28,9 @@ public class IFrame {
         if (!frameButtonWebElement.isDisplayed()) {
             throw new NoSuchElementException("iframe button does not exist in the iframe");
         }
+    }
+
+    public void switchToIframe(String iframe) {
+        webdriver.switchTo().frame(iframe);
     }
 }
