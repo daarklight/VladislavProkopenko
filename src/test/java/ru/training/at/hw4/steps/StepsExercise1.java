@@ -4,12 +4,15 @@ import io.qameta.allure.Step;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 public class StepsExercise1 extends AbstractSteps {
 
     public StepsExercise1(WebDriver webdriver) {
         super(webdriver);
     }
+
+    SoftAssert softAssert = new SoftAssert();
 
     @Step("Open test site by URL")
     public void openSite(String siteURL) {
@@ -18,7 +21,7 @@ public class StepsExercise1 extends AbstractSteps {
 
     @Step("Assert Browser title")
     public void checkIfBrowserTitleIsCorrect(String pageTitle) {
-        Assert.assertEquals(commonPageContent.checkPageTitle(), pageTitle);
+        softAssert.assertEquals(commonPageContent.checkPageTitle(), pageTitle);
     }
 
     @Step("Perform login")
@@ -34,7 +37,7 @@ public class StepsExercise1 extends AbstractSteps {
     @Step("Assert that 4 items on the header section are displayed and have proper texts")
     public void assertHeaderItemsAreDisplayedAndHaveProperTexts(List<String> expectedNamesOfHeaderMenuItems) {
         headerMenu.checkIfHeaderItemsAreDisplayed();
-        Assert.assertEquals(headerMenu.transferListOfHeaderMenuItems(), expectedNamesOfHeaderMenuItems);
+        softAssert.assertEquals(headerMenu.transferListOfHeaderMenuItems(), expectedNamesOfHeaderMenuItems);
     }
 
     @Step("Assert that there are 4 images on the Index Page and they are displayed")
@@ -45,7 +48,7 @@ public class StepsExercise1 extends AbstractSteps {
 
     @Step("Assert that there are 4 texts on the Index Page under icons and they have proper text")
     public void assertThatBenefitTextsExistAndHaveProperContent(List<String> expectedBenefitTexts) {
-        Assert.assertEquals(bottomPicturesAndTexts.transferListOfBenefitTexts(),
+        softAssert.assertEquals(bottomPicturesAndTexts.transferListOfBenefitTexts(),
             expectedBenefitTexts);
     }
 
@@ -68,6 +71,7 @@ public class StepsExercise1 extends AbstractSteps {
     @Step("Assert that 5 items in the Left Section are displayed and have proper text")
     public void assertThatLeftSectionItemsAreDisplayedAndHaveProperText(List<String> expectedNamesOfLeftMenuItems) {
         leftMenu.checkIfLeftMenuItemsAreDisplayed();
-        Assert.assertEquals(leftMenu.transferListOfLeftMenuItems(), expectedNamesOfLeftMenuItems);
+        softAssert.assertEquals(leftMenu.transferListOfLeftMenuItems(), expectedNamesOfLeftMenuItems);
+        softAssert.assertAll();
     }
 }
