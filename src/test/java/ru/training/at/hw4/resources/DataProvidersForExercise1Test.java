@@ -31,7 +31,7 @@ public class DataProvidersForExercise1Test {
                 List.of("To include good practices\nand ideas from successful\nEPAM project",
                     "To be flexible and\ncustomizable",
                     "To be multiplatform",
-                    "Already have good base\n(about 20 internal and\nsome external projects),\nwish to get more..."),
+                    "Already have good base\n(about 20 internal and\nsome external projects),\nwish to get more…"),
                 properties.getProperty("iframeName"),
                 List.of("Home", "Contact form", "Service", "Metals & Colors", "Elements packs")
             },
