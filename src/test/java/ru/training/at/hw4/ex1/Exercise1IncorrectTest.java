@@ -1,7 +1,6 @@
 package ru.training.at.hw4.ex1;
 
 import io.qameta.allure.Feature;
-import io.qameta.allure.Flaky;
 import io.qameta.allure.Story;
 import java.util.List;
 import org.testng.annotations.Test;
@@ -11,7 +10,6 @@ import ru.training.at.hw4.resources.DataProvidersForExercise1Test;
 @Feature("TestNG is used as testing framework")
 public class Exercise1IncorrectTest extends PrepostConditions {
 
-    @Flaky
     @Story("Incorrect Test for Exercise 1")
     @Test(dataProviderClass = DataProvidersForExercise1Test.class, dataProvider = "Data for Exercise1Test")
     public void testExercise1IncorrectTest(

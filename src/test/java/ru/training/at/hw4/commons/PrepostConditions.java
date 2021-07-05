@@ -14,8 +14,8 @@ import ru.training.at.hw4.steps.StepsExercise2;
 public class PrepostConditions {
 
     protected WebDriver webdriver;
-    public StepsExercise1 stepsExercise1;
-    public StepsExercise2 stepsExercise2;
+    protected StepsExercise1 stepsExercise1;
+    protected StepsExercise2 stepsExercise2;
 
     @BeforeClass
     public void setUpClass(ITestContext testContext) throws IOException {
