@@ -37,5 +37,3 @@ public class DataProvidersForExercise1Test {
         };
     }
 }
-
-//…

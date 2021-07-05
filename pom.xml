@@ -99,7 +99,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${maven-surefire-plugin.version}</version>
         <configuration>
-          <argLine>-Dfile.encoding=UTF-8</argLine>
           <suiteXmlFiles>
             <suiteXmlFile>${testng.suite.file}</suiteXmlFile>
           </suiteXmlFiles>

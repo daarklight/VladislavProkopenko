@@ -35,6 +35,7 @@ public class BottomPicturesAndTexts extends AbstractPage {
     }
 
     public List<String> transferListOfBenefitTexts() {
-        return benefitTextsWebElements.stream().map(elem -> elem.getText().replaceAll("…", "")).collect(Collectors.toList());
+        return benefitTextsWebElements.stream().map(elem -> elem.getText().replaceAll(
+            "…", "")).collect(Collectors.toList());
     }
 }
