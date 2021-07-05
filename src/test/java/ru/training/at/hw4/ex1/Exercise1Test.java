@@ -40,7 +40,8 @@ public class Exercise1Test extends PrepostConditions {
         // (According to teacher's recommendations, it was decided to exclude the requirement of
         // searching these 4 texts under the icons. So, each text is searched as is, without
         // any connections to points in space)
-        stepsExercise1.assertThatBenefitTextsExistAndHaveProperContent(expectedBenefitTexts);
+        stepsExercise1
+            .assertThatBenefitTextsExistAndHaveProperContent(expectedBenefitTexts);
 
         // 8. Assert that the iframe with “Frame Button” exists
         // (Cause step #9 checks whether “Frame Button” exists in the iframe,
