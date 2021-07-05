@@ -17,7 +17,7 @@ public class DataProvidersForExercise1Test {
         Properties properties = new Properties();
         File filePath = new File("src/test/resources/PageData.properties");
         FileInputStream fileInputStream = new FileInputStream(filePath);
-        properties.load(new InputStreamReader(fileInputStream, StandardCharsets.UTF_16));
+        properties.load(new InputStreamReader(fileInputStream, StandardCharsets.UTF_8));
 
         return new Object[][] {
             {properties.getProperty("mainPageURL"),
