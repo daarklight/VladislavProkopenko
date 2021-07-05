@@ -1,10 +1,10 @@
-package pages.differentelementspage;
+package pages.hw4.differentelementspage;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-import pages.AbstractPage;
+import pages.hw4.AbstractPage;
 
 public class ButtonsAndDropdownArea extends AbstractPage {
 
