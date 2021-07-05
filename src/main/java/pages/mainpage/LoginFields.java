@@ -1,10 +1,16 @@
 package pages.mainpage;
 
 import java.util.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.AbstractPage;
 
-public class LoginFields {
+public class LoginFields extends AbstractPage {
+
+    public LoginFields(WebDriver webdriver) {
+        super(webdriver);
+    }
 
     @FindBy(css = "li.dropdown.uui-profile-menu > a.dropdown-toggle")
     private WebElement arrowButtonToAppearLoginForm;

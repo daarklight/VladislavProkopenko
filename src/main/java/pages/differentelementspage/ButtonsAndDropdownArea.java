@@ -1,10 +1,16 @@
 package pages.differentelementspage;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import pages.AbstractPage;
 
-public class ButtonsAndDropdownArea {
+public class ButtonsAndDropdownArea extends AbstractPage {
+
+    public ButtonsAndDropdownArea(WebDriver webdriver) {
+        super(webdriver);
+    }
 
     @FindBy(xpath = "//label[text()[contains(.,'Water')]]/input")
     private WebElement webElementForWaterCheckbox;
