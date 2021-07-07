@@ -36,9 +36,9 @@
     <selenium-java.version>4.0.0-beta-3</selenium-java.version>
     <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
 
-    <allure.version>2.13.2</allure.version>
+    <allure.version>2.14.0</allure.version>
     <allure-maven.version>2.10.0</allure-maven.version>
-    <aspectj.version>1.9.5</aspectj.version>
+    <aspectj.version>1.9.6</aspectj.version>
   </properties>
 
   <dependencies>
