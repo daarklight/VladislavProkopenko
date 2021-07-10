@@ -2,5 +2,5 @@ target
 *.iml
 .idea
 etc.
-.allure
+.allure/
 /*/allure-results/
