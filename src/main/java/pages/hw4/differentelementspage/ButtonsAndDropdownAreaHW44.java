@@ -6,9 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import pages.hw4.AbstractPageHW4;
 
-public class ButtonsAndDropdownAreaHW4 extends AbstractPageHW4 {
+public class ButtonsAndDropdownAreaHW44 extends AbstractPageHW4 {
 
-    public ButtonsAndDropdownAreaHW4(WebDriver webdriver) {
+    public ButtonsAndDropdownAreaHW44(WebDriver webdriver) {
         super(webdriver);
     }
 

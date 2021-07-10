@@ -7,9 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.hw4.AbstractPageHW4;
 
-public class LogAreaHW4 extends AbstractPageHW4 {
+public class LogAreaHW44 extends AbstractPageHW4 {
 
-    public LogAreaHW4(WebDriver webdriver) {
+    public LogAreaHW44(WebDriver webdriver) {
         super(webdriver);
     }
 

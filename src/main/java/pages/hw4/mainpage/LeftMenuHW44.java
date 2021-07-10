@@ -8,9 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.hw4.AbstractPageHW4;
 
-public class LeftMenuHW4 extends AbstractPageHW4 {
+public class LeftMenuHW44 extends AbstractPageHW4 {
 
-    public LeftMenuHW4(WebDriver webdriver) {
+    public LeftMenuHW44(WebDriver webdriver) {
         super(webdriver);
     }
 

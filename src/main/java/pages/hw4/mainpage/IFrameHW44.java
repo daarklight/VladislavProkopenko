@@ -6,9 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.hw4.AbstractPageHW4;
 
-public class IFrameHW4 extends AbstractPageHW4 {
+public class IFrameHW44 extends AbstractPageHW4 {
 
-    public IFrameHW4(WebDriver webdriver) {
+    public IFrameHW44(WebDriver webdriver) {
         super(webdriver);
     }
 

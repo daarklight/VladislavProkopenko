@@ -8,9 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.hw4.AbstractPageHW4;
 
-public class BottomPicturesAndTextsHW4 extends AbstractPageHW4 {
+public class BottomPicturesAndTextsHW44 extends AbstractPageHW4 {
 
-    public BottomPicturesAndTextsHW4(WebDriver webdriver) {
+    public BottomPicturesAndTextsHW44(WebDriver webdriver) {
         super(webdriver);
     }
 

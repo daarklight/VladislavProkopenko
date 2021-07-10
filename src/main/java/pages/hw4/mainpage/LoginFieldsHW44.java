@@ -6,9 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.hw4.AbstractPageHW4;
 
-public class LoginFieldsHW4 extends AbstractPageHW4 {
+public class LoginFieldsHW44 extends AbstractPageHW4 {
 
-    public LoginFieldsHW4(WebDriver webdriver) {
+    public LoginFieldsHW44(WebDriver webdriver) {
         super(webdriver);
     }
 
