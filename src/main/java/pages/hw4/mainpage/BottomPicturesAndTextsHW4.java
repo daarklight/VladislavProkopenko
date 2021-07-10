@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.hw4.AbstractPage;
+import pages.hw4.AbstractPageHW4;
 
-public class BottomPicturesAndTexts extends AbstractPage {
+public class BottomPicturesAndTextsHW4 extends AbstractPageHW4 {
 
-    public BottomPicturesAndTexts(WebDriver webdriver) {
+    public BottomPicturesAndTextsHW4(WebDriver webdriver) {
         super(webdriver);
     }
 

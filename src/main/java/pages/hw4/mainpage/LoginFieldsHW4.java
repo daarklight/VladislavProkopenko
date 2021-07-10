@@ -4,11 +4,11 @@ import java.util.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.hw4.AbstractPage;
+import pages.hw4.AbstractPageHW4;
 
-public class LoginFields extends AbstractPage {
+public class LoginFieldsHW4 extends AbstractPageHW4 {
 
-    public LoginFields(WebDriver webdriver) {
+    public LoginFieldsHW4(WebDriver webdriver) {
         super(webdriver);
     }
 

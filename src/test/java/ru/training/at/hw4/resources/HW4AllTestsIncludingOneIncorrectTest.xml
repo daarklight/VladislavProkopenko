@@ -5,9 +5,9 @@
   </listeners>
   <test name="HW4AllTestsIncludingIncorrect">
     <classes>
-      <class name="ru.training.at.hw4.ex1.Exercise1Test"/>
-      <class name="ru.training.at.hw4.ex2.Exercise2Test"/>
-      <class name="ru.training.at.hw4.ex1.Exercise1IncorrectTest"/>
+      <class name="ru.training.at.hw4.ex1.Exercise1TestHW4"/>
+      <class name="ru.training.at.hw4.ex2.Exercise2TestHW4"/>
+      <class name="ru.training.at.hw4.ex1.Exercise1IncorrectTestHW4"/>
     </classes>
   </test>
 </suite>

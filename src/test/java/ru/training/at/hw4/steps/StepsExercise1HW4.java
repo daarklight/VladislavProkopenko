@@ -5,9 +5,9 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.testng.asserts.SoftAssert;
 
-public class StepsExercise1 extends AbstractSteps {
+public class StepsExercise1HW4 extends AbstractStepsHW4 {
 
-    public StepsExercise1(WebDriver webdriver) {
+    public StepsExercise1HW4(WebDriver webdriver) {
         super(webdriver);
     }
 

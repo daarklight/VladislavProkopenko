@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.hw4.AbstractPage;
+import pages.hw4.AbstractPageHW4;
 
-public class LeftMenu extends AbstractPage {
+public class LeftMenuHW4 extends AbstractPageHW4 {
 
-    public LeftMenu(WebDriver webdriver) {
+    public LeftMenuHW4(WebDriver webdriver) {
         super(webdriver);
     }
 

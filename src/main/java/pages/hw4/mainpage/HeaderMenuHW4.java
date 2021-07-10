@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.hw4.AbstractPage;
+import pages.hw4.AbstractPageHW4;
 
-public class HeaderMenu extends AbstractPage {
+public class HeaderMenuHW4 extends AbstractPageHW4 {
 
-    public HeaderMenu(WebDriver webdriver) {
+    public HeaderMenuHW4(WebDriver webdriver) {
         super(webdriver);
     }
 

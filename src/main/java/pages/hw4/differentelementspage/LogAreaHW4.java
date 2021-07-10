@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.hw4.AbstractPage;
+import pages.hw4.AbstractPageHW4;
 
-public class LogArea extends AbstractPage {
+public class LogAreaHW4 extends AbstractPageHW4 {
 
-    public LogArea(WebDriver webdriver) {
+    public LogAreaHW4(WebDriver webdriver) {
         super(webdriver);
     }
 
