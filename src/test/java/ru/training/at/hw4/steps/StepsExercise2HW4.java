@@ -5,9 +5,9 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-public class StepsExercise2 extends AbstractSteps {
+public class StepsExercise2HW4 extends AbstractStepsHW4 {
 
-    public StepsExercise2(WebDriver webdriver) {
+    public StepsExercise2HW4(WebDriver webdriver) {
         super(webdriver);
     }
 

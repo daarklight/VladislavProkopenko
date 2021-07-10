@@ -4,11 +4,11 @@ import java.util.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.hw4.AbstractPage;
+import pages.hw4.AbstractPageHW4;
 
-public class IFrame extends AbstractPage {
+public class IFrameHW4 extends AbstractPageHW4 {
 
-    public IFrame(WebDriver webdriver) {
+    public IFrameHW4(WebDriver webdriver) {
         super(webdriver);
     }
 

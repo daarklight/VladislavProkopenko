@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Properties;
 import org.testng.annotations.DataProvider;
 
-public class DataProvidersForExercise1Test {
+public class DataProvidersForExercise1TestHW4 {
 
     @DataProvider(name = "Data for Exercise1Test")
     public static Object[][] dataForTheTests() throws IOException {

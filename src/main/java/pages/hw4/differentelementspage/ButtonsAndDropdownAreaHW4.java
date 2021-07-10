@@ -4,11 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-import pages.hw4.AbstractPage;
+import pages.hw4.AbstractPageHW4;
 
-public class ButtonsAndDropdownArea extends AbstractPage {
+public class ButtonsAndDropdownAreaHW4 extends AbstractPageHW4 {
 
-    public ButtonsAndDropdownArea(WebDriver webdriver) {
+    public ButtonsAndDropdownAreaHW4(WebDriver webdriver) {
         super(webdriver);
     }
 

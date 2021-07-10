@@ -1,11 +1,11 @@
 package pages.hw4.mainpage;
 
 import org.openqa.selenium.WebDriver;
-import pages.hw4.AbstractPage;
+import pages.hw4.AbstractPageHW4;
 
-public class CommonPageContent extends AbstractPage {
+public class CommonPageContentHW4 extends AbstractPageHW4 {
 
-    public CommonPageContent(WebDriver webdriver) {
+    public CommonPageContentHW4(WebDriver webdriver) {
         super(webdriver);
     }
 

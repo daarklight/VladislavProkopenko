@@ -4,14 +4,14 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import java.util.List;
 import org.testng.annotations.Test;
-import ru.training.at.hw4.commons.PrepostConditions;
-import ru.training.at.hw4.resources.DataProvidersForExercise2Test;
+import ru.training.at.hw4.commons.PrepostConditionsHW4;
+import ru.training.at.hw4.resources.DataProvidersForExercise2TestHW4;
 
 @Feature("TestNG is used as testing framework")
-public class Exercise2Test extends PrepostConditions {
+public class Exercise2TestHW4 extends PrepostConditionsHW4 {
 
     @Story("Test for Exercise 2")
-    @Test(dataProviderClass = DataProvidersForExercise2Test.class, dataProvider = "Data for Exercise2Test")
+    @Test(dataProviderClass = DataProvidersForExercise2TestHW4.class, dataProvider = "Data for Exercise2Test")
     public void testExercise2Test(
         String mainPageURL, String titleForMainPage, String username, String password,
         String displayedUsername, String colorFromDropdown, List<String> expectedLogRowsTexts) {
