@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="HW6AllCorrectTests">
+  <listeners>
+    <listener class-name="ru.training.at.hw6.listeners.AllureListener"></listener>
+  </listeners>
+  <test name="HW6AllCorrectTests">
+    <classes>
+      <class name="ru.training.at.hw6.ex1.Exercise1Test"/>
+      <class name="ru.training.at.hw6.ex2.Exercise2Test"/>
+    </classes>
+  </test>
+</suite>
