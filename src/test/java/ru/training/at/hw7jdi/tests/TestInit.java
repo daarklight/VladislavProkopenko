@@ -16,9 +16,9 @@ public interface TestInit {
         logger.info("Run Tests");
     }
 
-    @AfterSuite(alwaysRun = true)
-    static void teardown() {
-        killAllSeleniumDrivers();
-    }
+//    @AfterSuite(alwaysRun = true)
+//    static void teardown() {
+//        killAllSeleniumDrivers();
+//    }
 
 }

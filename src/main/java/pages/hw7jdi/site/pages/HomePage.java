@@ -18,4 +18,7 @@ public class HomePage extends WebPage {
 
     @Css("header a[href = 'metals-colors.html']")
     public static Button metalsColors;
+
+
+
 }
