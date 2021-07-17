@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeSuite;
 import pages.hw7jdi.site.JdiSite;
 
 public interface TestInit {
+
     @BeforeSuite(alwaysRun = true)
     static void setUp() {
         killAllSeleniumDrivers();
@@ -16,9 +17,8 @@ public interface TestInit {
         logger.info("Run Tests");
     }
 
-//    @AfterSuite(alwaysRun = true)
-//    static void teardown() {
-//        killAllSeleniumDrivers();
-//    }
-
+    @AfterSuite(alwaysRun = true)
+    static void teardown() {
+        killAllSeleniumDrivers();
+    }
 }

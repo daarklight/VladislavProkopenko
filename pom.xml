@@ -28,6 +28,10 @@
     </testng.configs.path.hw6>
     <testng.suite.file/>
 
+    <testng.configs.path.hw7jdi>${project.basedir}/src/test/java/ru/training/at/hw7jdi/resources
+    </testng.configs.path.hw7jdi>
+    <testng.suite.file/>
+
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
 
@@ -329,6 +333,16 @@
     </profile>
 
 
+
+    <profile>
+      <id>HW7-MainTest</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <testng.suite.file>${testng.configs.path.hw7jdi}/MainTest.xml</testng.suite.file>
+      </properties>
+    </profile>
 
 
 
