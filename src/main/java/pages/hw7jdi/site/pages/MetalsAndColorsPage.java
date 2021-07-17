@@ -10,16 +10,16 @@ import com.epam.jdi.light.elements.pageobjects.annotations.locators.Css;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.JDropdown;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.UI;
 import com.epam.jdi.light.ui.html.elements.common.Button;
-import com.epam.jdi.light.ui.html.elements.common.Checkbox;
+import com.epam.jdi.light.ui.html.elements.common.Text;
+import com.epam.jdi.light.ui.html.elements.common.TextArea;
 import com.epam.jdi.light.ui.html.elements.complex.MultiSelector;
 import com.epam.jdi.light.ui.html.elements.complex.RadioButtons;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Url("/metals-colors.html")
 @Title("Metal and Colors")
 public class MetalsAndColorsPage extends WebPage {
-
-    //    @Css("section[id=odds-selector]")
-    //    @Css("section#odds-selector[name=custom_radio_odd]")
 
     @UI("[name=custom_radio_odd]")
     public static RadioButtons summaryRadiobuttonTopLine;
@@ -51,4 +51,11 @@ public class MetalsAndColorsPage extends WebPage {
     //    public static MultiSelector vegetables;
 
     //    @XPath(".//button[@type='submit' and contains(.,'Calculate')]") public Button calculate;
+
+    @UI("ul.panel-body-list.results > li")
+    public static List<Text> textRes;
+
+    public static List<String> transferListOfResuls() {
+        return textRes.stream().map(elem -> elem.getText()).collect(Collectors.toList());
+    }
 }
