@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 import org.hamcrest.MatcherAssert;
 import pages.hw7jdi.entities.MetalsColorsModel;
 
+
 public class MetalsColorsForm extends Form<MetalsColorsModel> {
 
     @UI("[name=custom_radio_odd], [name=custom_radio_even]")
@@ -56,8 +57,7 @@ public class MetalsColorsForm extends Form<MetalsColorsModel> {
         listOfVegetables.stream().forEach(elem -> vegetables.select(elem));
     }
 
-    @Override
-    public void check(MetalsColorsModel metalsColorsModel) {
+    public void verifyIfResultsAreCorrect(MetalsColorsModel metalsColorsModel) {
 
         int summary = metalsColorsModel.summary.get(0) + metalsColorsModel.summary.get(1);
 
@@ -73,7 +73,9 @@ public class MetalsColorsForm extends Form<MetalsColorsModel> {
             "Metal: " + metalsColorsModel.metals, "Vegetables: " + stringOfVegetables
         );
 
-        MatcherAssert.assertThat(transferListOfResults(), equalTo(expectedResult));
+        MatcherAssert.assertThat("Expected results and actual results in Result section are not the same",
+            transferListOfResults(),
+            equalTo(expectedResult));
     }
 
     @Override

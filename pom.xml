@@ -13,40 +13,32 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-    <checkstyle.version>8.42</checkstyle.version>
-    <testng.suite.file/>
-    <testng.configs.path.hw3>${project.basedir}/src/test/java/ru/training/at/hw3/resources
-    </testng.configs.path.hw3>
+    <testng.configs.path>${project.basedir}/src/test/java/ru/training/at/hw1/resources</testng.configs.path>
     <testng.suite.file/>
 
-    <testng.configs.path.hw5>${project.basedir}/src/test/java/ru/training/at/hw5/resources
-    </testng.configs.path.hw5>
+    <testng.configs.path.hw2>${project.basedir}/src/test/java/ru/training/at/hw2/resources</testng.configs.path.hw2>
     <testng.suite.file/>
 
-    <testng.configs.path.hw6>${project.basedir}/src/test/java/ru/training/at/hw6/resources
-    </testng.configs.path.hw6>
+    <testng.configs.path.hw3>${project.basedir}/src/test/java/ru/training/at/hw3/resources</testng.configs.path.hw3>
     <testng.suite.file/>
 
-    <testng.configs.path.hw7jdi>${project.basedir}/src/test/java/ru/training/at/hw7jdi/resources
-    </testng.configs.path.hw7jdi>
+    <testng.configs.path.hw5>${project.basedir}/src/test/java/ru/training/at/hw5/resources</testng.configs.path.hw5>
+    <testng.suite.file/>
+
+    <testng.configs.path.hw6>${project.basedir}/src/test/java/ru/training/at/hw6/resources</testng.configs.path.hw6>
+    <testng.suite.file/>
+
+    <testng.configs.path.hw7jdi>${project.basedir}/src/test/java/ru/training/at/hw7jdi/resources</testng.configs.path.hw7jdi>
     <testng.suite.file/>
 
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
-
-    <testng.configs.path>${project.basedir}/src/test/java/ru/training/at/hw1/resources
-    </testng.configs.path>
-    <testng.suite.file/>
 
     <testng.version>7.4.0</testng.version>
     <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
     <checkstyle.version>8.42</checkstyle.version>
     <calculator.version>1.0</calculator.version>
 
-    <testng.configs.path.hw2>${project.basedir}/src/test/java/ru/training/at/hw2/resources
-    </testng.configs.path.hw2>
-    <testng.suite.file/>
     <webdrivermanager.version>4.4.3</webdrivermanager.version>
     <selenium-java.version>4.0.0-beta-3</selenium-java.version>
     <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
@@ -57,13 +49,9 @@
 
     <cucumber-testng.version>6.10.4</cucumber-testng.version>
 
-
-
-
   </properties>
 
   <dependencies>
-
 
     <!-- https://mvnrepository.com/artifact/org.hamcrest/java-hamcrest -->
     <dependency>
@@ -72,7 +60,6 @@
       <version>2.0.0.0</version>
       <scope>test</scope>
     </dependency>
-
 
 
     <dependency>
@@ -199,7 +186,9 @@
 
   </dependencies>
 
+
   <build>
+
     <plugins>
 
       <plugin>
@@ -207,6 +196,10 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${maven-surefire-plugin.version}</version>
         <configuration>
+
+          <additionalClasspathElements>
+            <additionalClasspathElement>src/test/resources</additionalClasspathElement>
+          </additionalClasspathElements>
 
           <suiteXmlFiles>
             <suiteXmlFile>${testng.suite.file}</suiteXmlFile>
@@ -333,7 +326,6 @@
     </profile>
 
 
-
     <profile>
       <id>HW7-MainTest</id>
       <activation>
@@ -343,7 +335,6 @@
         <testng.suite.file>${testng.configs.path.hw7jdi}/MainTest.xml</testng.suite.file>
       </properties>
     </profile>
-
 
 
   </profiles>
